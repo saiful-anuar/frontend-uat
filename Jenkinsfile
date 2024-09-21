@@ -31,6 +31,7 @@ pipeline {
         echo "installing dependencies..."
         sh "npm cache clean --force"
         sh "npm init -y"
+        sh "pwd & hostname"
         sh "ls -la"
         sh "ls -la /"
         sh "npm install"
