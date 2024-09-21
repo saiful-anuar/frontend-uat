@@ -64,7 +64,7 @@ pipeline {
     }
     stage("DEPLOY & ACTIVATE") {
       steps {
-        echo 'this part will differ depending on setup'
+        echo 'Starting deployment and activation...'
         sh '''
         if [ "$(docker ps -q -f name=${APP_NAME})" ]; then
             echo "Stopping existing container ${APP_NAME}..."
@@ -74,6 +74,7 @@ pipeline {
         fi
 
         // Run the new container
+        chmod +x -R ${env.WORKSPACE}
         echo "Deploying new container ${APP_NAME}..."
         docker run -d --name ${APP_NAME} -p 4242:4200 ${IMAGE_NAME}
         '''
