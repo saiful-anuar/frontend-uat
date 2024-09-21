@@ -31,6 +31,8 @@ pipeline {
         echo "installing dependencies..."
         sh "npm cache clean --force"
         sh "npm init -y"
+        sh "ls -la"
+        sh "ls -la /"
         sh "npm install"
         //sh "apt install npm"
         //sh "npm init -y"
