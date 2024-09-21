@@ -1,10 +1,11 @@
 pipeline {
-  agent {
+  agent any
+  /*agent {
         docker {
             image 'node:latest'  // Use the Node.js image for the pipeline
             args '-v $HOME/uat_rootx/frontend_uat:frontend_uat'//jenkins_home:/var/lib/docker/volumes/jenkins_home/_data'
         }
-    }
+    }*/
 
   tools {
     nodejs "Nodejs"
