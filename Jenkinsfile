@@ -2,7 +2,7 @@ pipeline {
   agent {
         docker {
             image 'node:latest'  // Use the Node.js image for the pipeline
-            args '-v jenkins_home:/var/lib/docker/volumes/jenkins_home/_data'
+            args '-v $HOME/uat_rootx/frontend_uat:frontend_uat'//jenkins_home:/var/lib/docker/volumes/jenkins_home/_data'
         }
     }
 
