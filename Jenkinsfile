@@ -29,7 +29,7 @@ pipeline {
     stage('INSTALL PACKAGES') {
       steps {
         echo "installing dependencies..."
-        sh "apt install npm"
+        //sh "apt install npm"
         sh "npm init -y"
         sh "npm install @angular/forms @angular/router @angular/common"
         //need to add for chrome?
