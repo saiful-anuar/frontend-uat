@@ -6,7 +6,9 @@ pipeline {
         }
     }
 
-  tools {nodejs "Node.js"}
+  tools {
+    nodejs "Node.js"
+  }
 
   environment {
     APP_NAME = 'frontend'
