@@ -29,7 +29,8 @@ pipeline {
     stage('INSTALL PACKAGES') {
       steps {
         echo "installing dependencies..."
-        sh "npm init"
+        sh "npm cache clean --force"
+        sh "npm init -y"
         sh "npm install"
         //sh "apt install npm"
         //sh "npm init -y"
