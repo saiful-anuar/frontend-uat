@@ -13,7 +13,7 @@ pipeline {
 
   environment {
     APP_NAME = 'frontend'
-    IMAGE_NAME = 'root.ccsd.com/${APP_NAME}' // Replace with your Docker Hub username or appropriate image name
+    IMAGE_NAME = 'frontend-image' // Replace with your Docker Hub username or appropriate image name
     GITHUB_REPO='https://github.com/saiful-anuar/frontend-uat'
   }
 
