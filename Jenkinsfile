@@ -31,6 +31,7 @@ pipeline {
         echo "installing dependencies..."
         sh "npm cache clean --force"
         sh "npm init -y"
+        sh "sudo chown -R 122:124 /.npm"
         sh "pwd & hostname"
         sh "ls -lart /home"
         sh "ls -la"
