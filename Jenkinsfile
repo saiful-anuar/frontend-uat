@@ -7,7 +7,7 @@ pipeline {
     }
 
   tools {
-    nodejs "Node.js"
+    nodejs "Nodejs"
   }
 
   environment {
