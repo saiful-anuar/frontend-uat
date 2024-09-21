@@ -85,6 +85,7 @@ pipeline {
         always {
             // Clean up workspace after build
            // cleanWs()
+            echo 'dummy'
         }
         success {
             echo 'Build, Test, and Deployment completed successfully.'
