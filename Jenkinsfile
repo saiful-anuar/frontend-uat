@@ -32,7 +32,6 @@ pipeline {
         sh "npm cache clean --force"
         sh "npm init -y"
         sh "pwd & hostname"
-        sh "ls -la /.npm"
         sh "ls -lart /home"
         sh "ls -la"
         sh "ls -la /"
