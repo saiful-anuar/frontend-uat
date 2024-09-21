@@ -72,11 +72,11 @@ pipeline {
             echo "Removing existing container ${APP_NAME}..."
             docker rm ${APP_NAME}
         fi
+        '''
 
         // Run the new container
         echo "Deploying new container ${APP_NAME}..."
-        docker run -d --name ${APP_NAME} -p 4242:4200 ${IMAGE_NAME}
-        '''
+        sh 'docker run -d --name ${APP_NAME} -p 4242:4200 ${IMAGE_NAME}'
       }
     }
   }
