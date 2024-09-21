@@ -3,7 +3,7 @@ pipeline {
   /*agent {
         docker {
             image 'node:latest'  // Use the Node.js image for the pipeline
-            args '-v $HOME/uat_rootx/frontend_uat:frontend_uat'//jenkins_home:/var/lib/docker/volumes/jenkins_home/_data'
+            args '-v jenkins_home:/var/lib/docker/volumes/jenkins_home/_data'
         }
     }*/
 
@@ -31,11 +31,11 @@ pipeline {
       steps {
         echo "installing dependencies..."
         sh "npm cache clean --force"
-        sh "npm init -y"
-        sh "pwd & hostname"
-        sh "ls -lart /home"
-        sh "ls -la"
-        sh "ls -la /"
+        //sh "npm init -y"
+        //sh "pwd & hostname"
+        //sh "ls -lart /home"
+        //sh "ls -la"
+        //sh "ls -la /"
         sh "npm install"
         //sh "apt install npm"
         //sh "npm init -y"
@@ -46,7 +46,7 @@ pipeline {
     stage('TEST') {
       steps {
         echo "running test..."
-        sh 'npm test'
+        sh 'npm test --watch=false'
       }
     }
     stage('BUILD APP') {
