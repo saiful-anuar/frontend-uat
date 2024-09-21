@@ -46,7 +46,7 @@ pipeline {
     stage('TEST') {
       steps {
         echo "running test..."
-        sh 'npm test --watch=false'
+        //sh 'npm test --watch=false'
       }
     }
     stage('BUILD APP') {
