@@ -74,7 +74,6 @@ pipeline {
         fi
 
         // Run the new container
-        chmod +x -R /var/lib/jenkins/workspace/build_uat@tmp/
         echo "Deploying new container ${APP_NAME}..."
         docker run -d --name ${APP_NAME} -p 4242:4200 ${IMAGE_NAME}
         '''
