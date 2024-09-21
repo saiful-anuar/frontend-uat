@@ -29,7 +29,7 @@ pipeline {
     stage('INSTALL PACKAGES') {
       steps {
         echo "installing dependencies..."
-        sh "npm install"
+        //sh "npm install"
         //need to add for chrome?
       }
     }
