@@ -30,7 +30,7 @@ pipeline {
     stage('INSTALL PACKAGES') {
       steps {
         echo "installing dependencies..."
-        sh "npm cache clean --force"
+        //sh "npm cache clean --force"
         //sh "npm init -y"
         //sh "pwd & hostname"
         //sh "ls -lart /home"
