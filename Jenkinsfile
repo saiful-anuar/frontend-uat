@@ -1,11 +1,11 @@
 pipeline {
-  //agent any
-  agent {
+  agent any
+  /*agent {
         docker {
           image 'docker:latest'
           args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
-    }
+    }*/
 
   tools {
     nodejs "Nodejs"
@@ -35,7 +35,7 @@ pipeline {
         //sh "pwd & hostname"
         //sh "ls -lart /home"
         //sh "ls -la"
-        sh "apt install npm"
+        //sh "apt install npm"
         sh "npm install"
         sh "npm i -g @angular/cli"
         //sh "npm init -y"
