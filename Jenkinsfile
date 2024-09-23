@@ -37,7 +37,7 @@ pipeline {
         //sh "ls -la"
         //sh "ls -la /"
         sh "npm install"
-        //sh "apt install npm"
+        sh "npm i -g @angular/cli"
         //sh "npm init -y"
         //sh "npm install @angular/forms @angular/router @angular/common"
         //need to add for chrome?
