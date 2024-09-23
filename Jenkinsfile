@@ -35,7 +35,7 @@ pipeline {
         //sh "pwd & hostname"
         //sh "ls -lart /home"
         //sh "ls -la"
-        //sh "ls -la /"
+        sh "apt install npm"
         sh "npm install"
         sh "npm i -g @angular/cli"
         //sh "npm init -y"
