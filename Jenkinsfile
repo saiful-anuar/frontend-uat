@@ -84,7 +84,7 @@ pipeline {
   post {
         always {
             // Clean up workspace after build
-           // cleanWs()
+            cleanWs()
             echo 'dummy'
         }
         success {
@@ -92,7 +92,6 @@ pipeline {
         }
         failure {
             echo 'Build or Deployment failed.'
-            cleanWs()
         }
     }
 }
