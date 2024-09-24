@@ -66,6 +66,16 @@ pipeline {
         sh 'docker run --restart always -d --name ${APP_NAME} -p 4202:4200 ${IMAGE_NAME}'
       }
     }
+    stage("Kubernetes Deploy"){
+      steps{
+        script {
+          // Deploy to Kubernetes using kubectl
+          sh 'minikube start'
+          sh 'kubectl apply -f k8s.yml'
+          sh 'kubectl apply -f k8s-svc.yml'
+        }
+      }
+    }
   }
 
   post {
