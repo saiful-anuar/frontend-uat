@@ -1,11 +1,5 @@
 pipeline {
   agent any
-  /*agent {
-        docker {
-          image 'docker:latest'
-          args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }*/
 
   tools {
     nodejs "Nodejs"
@@ -29,24 +23,16 @@ pipeline {
 
     stage('INSTALL PACKAGES') {
       steps {
+        // Install the dependencies
         echo "installing dependencies..."
-        //sh "npm cache clean --force"
-        //sh "npm init -y"
-        //sh "pwd & hostname"
-        //sh "ls -lart /home"
-        //sh "ls -la"
-        //sh "apt install npm"
         sh "npm install"
         sh "npm i -g @angular/cli"
-        //sh "npm init -y"
-        //sh "npm install @angular/forms @angular/router @angular/common"
-        //need to add for chrome?
       }
     }
     stage('TEST') {
       steps {
         echo "running test..."
-        //sh 'npm test --watch=false'
+        //sh 'npm test --watch=false'  //failed at headless chrome
       }
     }
     stage('BUILD APP') {
@@ -73,10 +59,11 @@ pipeline {
             docker rm ${APP_NAME}
         fi
         '''
+        // Above doesnt seem to be working, need to check
 
         // Run the new container
         echo "Deploying new container ${APP_NAME}..."
-        sh 'docker run -d --name ${APP_NAME} -p 4202:4200 ${IMAGE_NAME}'
+        sh 'docker run --restart always -d --name ${APP_NAME} -p 4202:4200 ${IMAGE_NAME}'
       }
     }
   }
@@ -85,7 +72,6 @@ pipeline {
         always {
             // Clean up workspace after build
             cleanWs()
-            echo 'dummy'
         }
         success {
             echo 'Build, Test, and Deployment completed successfully.'
