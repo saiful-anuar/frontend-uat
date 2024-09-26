@@ -61,7 +61,8 @@ pipeline {
                 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
                 """
             }
-        }   
+        } 
+    }  
     stage('Push to Docker Repo') {
         steps {
             script {
