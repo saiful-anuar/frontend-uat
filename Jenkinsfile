@@ -9,8 +9,8 @@ pipeline {
     APP_NAME = 'frontend'
     //IMAGE_NAME = 'frontend-image' // Replace with your Docker Hub username or appropriate image name
     GITHUB_REPO='https://github.com/saiful-anuar/frontend-uat'
-    DOCKER_USERNAME = credentials('dockerhub-username') // Jenkins credentials for Docker Hub username
-    DOCKER_PASSWORD = credentials('dockerhub-password') // Jenkins credentials for Docker Hub password
+    DOCKER_ID = credentials('docker_id') // Jenkins credentials for Docker Hub username
+    //DOCKER_PASSWORD = credentials('dockerhub-password') // Jenkins credentials for Docker Hub password
     DOCKER_IMAGE = 'sflnr/frontend-uat2'            // Docker Hub image name
     IMAGE_TAG = 'latest'                                 // Image tag
   }
@@ -65,10 +65,14 @@ pipeline {
     }  
     stage('Push to Docker Repo') {
         steps {
-            script {
+	  withCredentials([usernamePassword(credentialsId: "${DOCKER_ID}", passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+          sh "docker login -u ${env.dockerUser} -p ${env.dockerPassword}"
+          sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
+          }
+           /* script {
                 // Push the Docker image
                 sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
-            }
+            }*/
         }
     }
    /* stage("DEPLOY & ACTIVATE") {
