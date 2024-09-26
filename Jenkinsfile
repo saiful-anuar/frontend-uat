@@ -113,8 +113,9 @@ pipeline {
         script {
           // Deploy to Kubernetes using kubectl. Host system must have minikube installed
           //sh 'minikube start'
-          sh 'kubectl apply -f kubernetes/k8s.yml'
-          sh 'kubectl apply -f kubernetes/k8s-svc.yml'
+          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+          //sh 'kubectl apply -f kubernetes/k8s.yml'
+          //sh 'kubectl apply -f kubernetes/k8s-svc.yml'
         }
       }
     }
