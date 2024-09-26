@@ -53,7 +53,7 @@ pipeline {
         }
       }
     }
-    stage('Login to Docker Hub') {
+   /* stage('Login to Docker Hub') {
         steps {
             script {
                 // Log in to Docker Hub using docker login
@@ -62,7 +62,7 @@ pipeline {
                 """
             }
         } 
-    }  
+    }*/  
     stage('Push to Docker Repo') {
         steps {
 	  withCredentials([usernamePassword(credentialsId: "${DOCKER_ID}", passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
