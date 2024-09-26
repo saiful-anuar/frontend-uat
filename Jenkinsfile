@@ -7,8 +7,12 @@ pipeline {
 
   environment {
     APP_NAME = 'frontend'
-    IMAGE_NAME = 'frontend-image' // Replace with your Docker Hub username or appropriate image name
+    //IMAGE_NAME = 'frontend-image' // Replace with your Docker Hub username or appropriate image name
     GITHUB_REPO='https://github.com/saiful-anuar/frontend-uat'
+    DOCKER_USERNAME = credentials('dockerhub-username') // Jenkins credentials for Docker Hub username
+    DOCKER_PASSWORD = credentials('dockerhub-password') // Jenkins credentials for Docker Hub password
+    DOCKER_IMAGE = 'sflnr/frontend-uat2'            // Docker Hub image name
+    IMAGE_TAG = 'latest'                                 // Image tag
   }
 
   stages {
@@ -44,11 +48,29 @@ pipeline {
     stage("BUILD DOCKER") {
       steps {
         script {
-          sh 'docker build -t ${IMAGE_NAME} .'
+          sh 'docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} .'
+          //sh 'docker build -t ${IMAGE_NAME} .'
         }
       }
     }
-    stage("DEPLOY & ACTIVATE") {
+    stage('Login to Docker Hub') {
+        steps {
+            script {
+                // Log in to Docker Hub using docker login
+                sh """
+                echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+                """
+            }
+        }   
+    stage('Push to Docker Repo') {
+        steps {
+            script {
+                // Push the Docker image
+                sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
+            }
+        }
+    }
+   /* stage("DEPLOY & ACTIVATE") {
       steps {
         /*echo 'Starting deployment and activation...'
         sh '''
@@ -60,7 +82,7 @@ pipeline {
         fi
         '''*/
         // Above doesnt seem to be working, need to check
-
+/*
         script {
           // Check if the container is created
           def containerId = sh(script: "docker ps -a -q -f name=${APP_NAME}", returnStdout: true).trim()
@@ -80,17 +102,17 @@ pipeline {
         echo "Deploying new container ${APP_NAME}..."
         sh 'docker run --restart always -d --name ${APP_NAME} -p 4202:4200 ${IMAGE_NAME}'
       }
-    }
-   /* stage("Kubernetes Deploy"){
+    }*/
+    stage("Kubernetes Deploy"){
       steps{
         script {
-          // Deploy to Kubernetes using kubectl
+          // Deploy to Kubernetes using kubectl. Host system must have minikube installed
           sh 'minikube start'
-          sh 'kubectl apply -f k8s.yml'
-          sh 'kubectl apply -f k8s-svc.yml'
+          sh 'kubectl apply -f kubernetes/k8s.yml'
+          sh 'kubectl apply -f kubernetes/k8s-svc.yml'
         }
       }
-    }*/
+    }
   }
 
   post {
