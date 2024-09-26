@@ -65,7 +65,7 @@ pipeline {
     }*/  
     stage('Push to Docker Repo') {
         steps {
-	  withCredentials([usernamePassword(credentialsId: '${DOCKER_ID}', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+	  withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
           sh 'docker login -u ${env.dockerUser} -p ${env.dockerPassword}'
           sh 'docker push ${DOCKER_IMAGE}:${IMAGE_TAG}'
           }
