@@ -35,20 +35,6 @@ pipeline {
         sh "npm i -g @angular/cli"
       }
     }
-    stage('Install Chrome') {
-      steps {
-        script {
-          // Update package list and install necessary dependencies
-          sh '''
-          apt-get update
-          apt-get install -y wget unzip
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
-          rm google-chrome-stable_current_amd64.deb
-          '''
-        }
-      }
-    }
     stage('TEST') {
       steps {
         echo "running test..."
