@@ -38,7 +38,8 @@ pipeline {
     stage('TEST') {
       steps {
         echo "running test..."
-        sh 'npm test --watch=false --browsers=ChromeHeadless --no-sandbox --disable-setuid-sandbox'
+	sh 'ng test --watch=false --browsers=ChromeHeadless'
+        //sh 'npm test --watch=false --browsers=ChromeHeadless --no-sandbox --disable-setuid-sandbox'
 	//sh 'export PATH="$PATH:/usr/bin/Xvfb"'
         //sh 'npm test --watch=false'  //failed at headless chrome
 	//xfvb {
