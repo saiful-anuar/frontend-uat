@@ -38,6 +38,7 @@ pipeline {
     stage('TEST') {
       steps {
         echo "running test..."
+	sh 'export PATH="$PATH:/usr/bin/Xvfb"'
         //sh 'npm test --watch=false'  //failed at headless chrome
 	xfvb {
           sh 'npm test -- --watch=false --browsers=ChromeHeadless'
