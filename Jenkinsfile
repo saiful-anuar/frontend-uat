@@ -13,8 +13,8 @@ pipeline {
     //DOCKER_PASSWORD = credentials('dockerhub-password') // Jenkins credentials for Docker Hub password
     DOCKER_IMAGE = 'sflnr/frontend-uat2'            // Docker Hub image name
     IMAGE_TAG = 'latest'                                 // Image tag
-    NODEJS_HOME = tool name: 'Nodejs', type: 'NodeJSInstallation' // Adjust to your Node.js installation
-    PATH = "${NODEJS_HOME}/bin:${env.PATH}"
+    //NODEJS_HOME = tool name: 'Nodejs', type: 'NodeJSInstallation' // Adjust to your Node.js installation
+    //PATH = "${NODEJS_HOME}/bin:${env.PATH}"
   }
 
   stages {
