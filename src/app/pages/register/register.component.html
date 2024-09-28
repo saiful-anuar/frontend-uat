@@ -6,60 +6,30 @@
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
               <form class="form-group" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  
-                <div class="row">
-                  <div class="col-md-12 mb-4">
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="text" id="firstname" class="form-control form-control-lg" formControlName="firstname"/>
-                      <label class="form-label" for="firstname">First Name</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 mb-4">
-  
-                        <div data-mdb-input-init class="form-outline">
-                          <input type="text" id="lastname" class="form-control form-control-lg" formControlName="lastname" />
-                          <label class="form-label" for="lastname">Last Name</label>
-                        </div>
-      
-                      </div>
-                </div>
-  
                 <div class="row">
                   <div class="col-md-12 mb-4 d-flex align-items-center">
-  
                     <div data-mdb-input-init class="form-outline datepicker w-100">
-                      <input type="text" class="form-control form-control-lg" id="username" formControlName="username"  />
                       <label for="username" class="form-label">Username</label>
-                    </div>
-  
+                      <input type="text" class="form-control form-control-lg" id="username" formControlName="username"  />                     
+                    </div> 
                   </div>
                 </div>
-  
                 <div class="row">
-                  <div class="col-md-12 mb-4 pb-2">
-  
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="text" id="employeecode" class="form-control form-control-lg" formControlName="employeecode" />
-                      <label class="form-label" for="employeecode">Employee Code</label>
-                    </div>
-  
+                  <div class="col-md-12 mb-4 pb-2">       
+                      <div data-mdb-input-init class="form-outline">
+                          <label class="form-label" for="email">Email</label>
+                          <input type="email" id="email" class="form-control form-control-lg" formControlName="email" />  
+                      </div>
                   </div>
-                  
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4 pb-2">
-            
-                        
                         <div data-mdb-input-init class="form-outline">
-                            <input type="password" id="password" class="form-control form-control-lg" formControlName="password" />
                             <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" class="form-control form-control-lg" formControlName="password" />         
                         </div>
                     </div>
                 </div>
-  
                 <div class="mt-4 pt-2">
                   <input data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit" value="Submit" />
                 </div>

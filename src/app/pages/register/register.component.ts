@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,21 +12,23 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class RegisterComponent {
   router = inject(Router);
-
+  authService = inject(AuthService);
   public registerForm = new FormGroup({
-    firstname: new FormControl('', [Validators.required]),
-    lastname: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
-    employeecode: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email])
   })
 
 
   onSubmit = () => {
     if (this.registerForm.valid) {
-      console.log('register data', this.registerForm.value)
-
-      // TODO: navigate to homepage
+      // console.log('register data', this.registerForm.value)
+      this.authService.signup(this.registerForm.value).subscribe({
+        next: () => {
+          this.router.navigate(['/login']);
+        },
+        error: (err) => console.log(err)
+      });
     }
   }
 }
