@@ -37,7 +37,12 @@ module.exports = function (config) {
       customLaunchers: {
         ChromeHeadless: {
           base: 'Chrome',
-            flags: ['--headless', '--disable-gpu', '--window-size=800,600']
+	    flags: [
+              '--disable-gpu',
+              '--headless',
+              '--no-sandbox',
+              '--remote-debugging-port=9222',
+        ],
         }
       },
     restartOnFileChange: true
